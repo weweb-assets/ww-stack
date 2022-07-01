@@ -1,10 +1,10 @@
 <template>
   <draggable 
-    :list="wwElementState.props.items" 
-    :item-key="wwElementState.props.itemKey || 'id'"
+    :list="internalItems" 
+    :item-key="itemKey"
     :clone="el => el"
-    :group="wwElementState.props.group" 
-    :sort="wwElementState.props.sortable"
+    :group="group" 
+    :sort="sortable"
     @change="onChange"
   >
     <template #header>
@@ -37,9 +37,68 @@ export default {
     wwElementState: { type: Object, required: true },
     content: { type: Object, required: true }
   },
+  emits: ['trigger-event'],
+  data: () => ({
+    internalItems: []
+  }),
   methods: {
     onChange(change) {
       this.customHandler && this.customHandler(change, {...this.wwElementState.props})
+      if (change.moved) {
+        this.$emit('trigger-event', { 
+          name: 'item:moved', 
+          event: { 
+            item: change.moved.element,
+            oldIndex: change.moved.oldIndex,
+            newIndex: change.moved.newIndex,
+          }
+        })
+      }
+
+      if (change.added) {
+        this.$emit('trigger-event', {
+          name: 'item:added',
+          event: {
+            item: change.added.element,
+            newIndex: change.added.newIndex,
+          }
+        })
+      }
+
+      if (change.removed) {
+        this.$emit('trigger-event', {
+          name: 'item:removed',
+          event: {
+            item: change.removed.element,
+            oldIndex: change.removed.oldIndex,
+          }
+        })
+      }
+    }
+  },
+  computed: {
+    items() {
+      const data = this.wwElementState.props.items ? this.wwElementState.props.items : this.content.items
+      const items = wwLib.wwCollection.getCollectionData(data)
+      if (!Array.isArray(items)) return []
+      return items
+    },
+    group() {
+      return this.wwElementState.props.group ? this.wwElementState.props.group : this.content.group
+    },
+    sortable() {
+      return this.wwElementState.props.sortable ? this.wwElementState.props.sortable : this.content.sortable
+    },
+    itemKey() {
+      return this.wwElementState.props.itemKey || 'id'
+    }
+  },
+  watch: {
+    items: {
+      immediate: true,
+      handler: function (value) {
+        this.internalItems = [...value]
+      }
     }
   }
 };

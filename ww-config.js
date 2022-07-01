@@ -4,6 +4,33 @@ export default {
       en: 'Stack',
     },
   },
+  triggerEvents: [
+    { 
+      name: 'item:moved',
+      label: { en: 'On item moved' },
+      event: { 
+        item: {},
+        oldIndex: 0,
+        newIndex: 1,
+      }
+    },
+    { 
+      name: 'item:added',
+      label: { en: 'On item added' },
+      event: { 
+        item: {},
+        newIndex: 1,
+      }
+    },
+    { 
+      name: 'item:removed',
+      label: { en: 'On item removed' },
+      event: { 
+        item: {},
+        oldIndex: 0,
+      }
+    },
+  ],
   properties: {
     group: {
       hidden: (content, sidePanelContent, boundProps, wwProps) => !!(wwProps && wwProps.group),
@@ -31,7 +58,7 @@ export default {
     sortable: {
       hidden: (content, sidePanelContent, boundProps, wwProps) => !!(wwProps && wwProps.sortable),
       label: {
-        en: 'Free ordering',
+        en: 'Sortable',
       },
       type: 'OnOff',
       defaultValue: true,
@@ -39,14 +66,14 @@ export default {
     },
     itemElement: {
       hidden: true,
-      defaultValue: [{ isWwObject: true, type: "ww-flexbox" }],
+      defaultValue: [{ isWwObject: true, type: 'ww-flexbox' }],
       navigator: {
         group: 'Item',
       },
     },
     headerElement: {
       hidden: true,
-      defaultValue: [{ isWwObject: true, type: "ww-text" }],
+      defaultValue: [{ isWwObject: true, type: 'ww-text' }],
       navigator: {
         group: 'Header',
       },
