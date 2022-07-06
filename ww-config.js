@@ -12,6 +12,7 @@ export default {
         item: {},
         oldIndex: 0,
         newIndex: 1,
+        updatedList: []
       }
     },
     { 
@@ -20,6 +21,7 @@ export default {
       event: { 
         item: {},
         newIndex: 1,
+        updatedList: []
       }
     },
     { 
@@ -28,6 +30,7 @@ export default {
       event: { 
         item: {},
         oldIndex: 0,
+        updatedList: []
       }
     },
   ],

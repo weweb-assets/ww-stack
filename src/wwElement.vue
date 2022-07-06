@@ -1,6 +1,6 @@
 <template>
   <draggable 
-    :list="internalItems" 
+    v-model="internalItems" 
     :item-key="itemKey"
     :clone="el => el"
     :group="group" 
@@ -43,7 +43,7 @@ export default {
   }),
   methods: {
     onChange(change) {
-      this.customHandler && this.customHandler(change, {...this.wwElementState.props})
+      this.customHandler && this.customHandler(change, {...this.wwElementState.props, updatedStackItems: this.internalItems})
       if (change.moved) {
         this.$emit('trigger-event', { 
           name: 'item:moved', 
@@ -51,6 +51,7 @@ export default {
             item: change.moved.element,
             oldIndex: change.moved.oldIndex,
             newIndex: change.moved.newIndex,
+            updatedList: this.internalItems
           }
         })
       }
@@ -61,6 +62,7 @@ export default {
           event: {
             item: change.added.element,
             newIndex: change.added.newIndex,
+            updatedList: this.internalItems
           }
         })
       }
@@ -71,6 +73,7 @@ export default {
           event: {
             item: change.removed.element,
             oldIndex: change.removed.oldIndex,
+            updatedList: this.internalItems
           }
         })
       }
