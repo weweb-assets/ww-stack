@@ -6,13 +6,15 @@
     :group="group" 
     :sort="sortable"
     @change="onChange"
+    @start="setDrag(true)"
+    @end="setDrag(false)"
   >
     <template #header>
       <wwLayout path="headerElement"></wwLayout>
     </template>
     <template #item="{ element, index: itemIndex }">
       <div>
-        <wwLayoutItemContext :index="itemIndex" :item="element" is-repeat :data="element">
+        <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element">
           <wwLayout path="itemElement"></wwLayout>
         </wwLayoutItemContext>
       </div>
@@ -31,15 +33,27 @@ export default {
     draggable,
   },
   inject: {
-    customHandler: {defaultValue: null}
+    customHandler: {defaultValue: null},
+    customDragHandler: {defaultValue: null}
   },
   props: {
     wwElementState: { type: Object, required: true },
-    content: { type: Object, required: true }
+    content: { type: Object, required: true },
+    uid: { type: String, required: true },
   },
   emits: ['trigger-event'],
+  setup(props) {
+    const { value: isDragging, setValue: setDrag } = wwLib.wwVariable.useComponentVariable({
+      uid: props.uid,
+      name: 'isDragging',
+      type: 'boolean',
+      defaultValue: false,
+      readonly: true,
+    });
+    return { isDragging, setDrag };
+  },
   data: () => ({
-    internalItems: []
+    internalItems: [],
   }),
   methods: {
     onChange(change) {
@@ -101,6 +115,11 @@ export default {
       immediate: true,
       handler: function (value) {
         this.internalItems = [...value]
+      }
+    },
+    isDragging(value) {
+      if(this.customDragHandler) {
+        this.customDragHandler(value, {...this.wwElementState.props})
       }
     }
   }
