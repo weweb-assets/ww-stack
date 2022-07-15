@@ -14,7 +14,7 @@
     </template>
     <template #item="{ element, index: itemIndex }">
       <div>
-        <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element">
+        <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-list="internalItems">
           <wwLayout path="itemElement"></wwLayout>
         </wwLayoutItemContext>
       </div>
