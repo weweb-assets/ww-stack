@@ -3,7 +3,7 @@ export default {
     label: {
       en: 'Stack',
     },
-    icon: 'fontawesome/solid/diagram-next'
+    icon: 'inbox-in'
   },
   triggerEvents: [
     { 
