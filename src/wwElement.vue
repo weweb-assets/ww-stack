@@ -14,9 +14,11 @@
     </template>
     <template #item="{ element, index: itemIndex }">
       <div>
-        <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-items="internalItems">
+        <!-- <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-items="internalItems">
           <wwLayout path="itemElement"></wwLayout>
-        </wwLayoutItemContext>
+        </wwLayoutItemContext> -->
+        <slotComp>{{ JSON.stringify(element) }}</slotComp>
+        
       </div>
     </template>
     <template #footer>
@@ -27,10 +29,12 @@
 
 <script>
 import draggable from 'vuedraggable';
+import slotComp from './slotComp.vue'
 
 export default {
   components: {
     draggable,
+    slotComp
   },
   inject: {
     customHandler: {defaultValue: null},
@@ -57,6 +61,7 @@ export default {
   }),
   methods: {
     onChange(change) {
+      console.log('onChange', change)
       this.customHandler && this.customHandler(change, {...this.wwElementState.props, updatedStackItems: this.internalItems})
       if (change.moved) {
         this.$emit('trigger-event', { 
