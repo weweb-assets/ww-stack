@@ -17,8 +17,9 @@
         <!-- <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-items="internalItems">
           <wwLayout path="itemElement"></wwLayout>
         </wwLayoutItemContext> -->
-        <slotComp>{{ JSON.stringify(element) }}</slotComp>
-        
+        <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-items="internalItems">
+          <slotComp>{{ JSON.stringify(element) }}</slotComp>
+        </wwLayoutItemContext>
       </div>
     </template>
     <template #footer>
