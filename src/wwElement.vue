@@ -13,12 +13,9 @@
       <wwLayout path="headerElement"></wwLayout>
     </template>
     <template #item="{ element, index: itemIndex }">
-      <div>
-        <!-- <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-items="internalItems">
-          <wwLayout path="itemElement"></wwLayout>
-        </wwLayoutItemContext> -->
+      <div class="draggable-item">
         <wwLayoutItemContext :index="itemIndex" :item="null" is-repeat :data="element" :repeated-items="internalItems">
-          <slotComp>{{ JSON.stringify(element) }}</slotComp>
+          <wwLayout path="itemElement"></wwLayout>
         </wwLayoutItemContext>
       </div>
     </template>
@@ -30,12 +27,10 @@
 
 <script>
 import draggable from 'vuedraggable';
-import slotComp from './slotComp.vue'
 
 export default {
   components: {
     draggable,
-    slotComp
   },
   inject: {
     customHandler: {defaultValue: null},
@@ -62,7 +57,6 @@ export default {
   }),
   methods: {
     onChange(change) {
-      console.log('onChange', change)
       this.customHandler && this.customHandler(change, {...this.wwElementState.props, updatedStackItems: this.internalItems})
       if (change.moved) {
         this.$emit('trigger-event', { 
@@ -131,3 +125,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+/** FIX POINTER-EVENTS: ALL BREAKING DRAGGABLE ON MOBILE/TABLET (TOUCH MODE) */
+.draggable-item /deep/ .ww-layout {
+  pointer-events: unset!important;
+}
+.draggable-item /deep/ .ww-layout > .ww-object {
+  pointer-events: unset!important;
+}
+</style>
