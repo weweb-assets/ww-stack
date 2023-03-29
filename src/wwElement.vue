@@ -5,6 +5,7 @@
     :clone="el => el"
     :group="group" 
     :sort="sortable"
+    :disabled="isEditing"
     @change="onChange"
     @start="setDrag(true)"
     @end="setDrag(false)"
@@ -40,6 +41,9 @@ export default {
     wwElementState: { type: Object, required: true },
     content: { type: Object, required: true },
     uid: { type: String, required: true },
+    /* wwEditor:start */
+    wwEditorState: { type: Object, required: true },
+    /* wwEditor:end */
   },
   emits: ['trigger-event'],
   setup(props) {
@@ -94,6 +98,13 @@ export default {
     }
   },
   computed: {
+    isEditing() {
+      /* wwEditor:start */
+      return this.wwEditorState.editMode === wwLib.wwEditorHelper.EDIT_MODES.EDITION;
+      /* wwEditor:end */
+      // eslint-disable-next-line no-unreachable
+      return false;
+    },
     items() {
       const data = this.wwElementState.props.items ? this.wwElementState.props.items : this.content.items
       const items = wwLib.wwCollection.getCollectionData(data)
