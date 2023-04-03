@@ -142,7 +142,10 @@ export default {
 .draggable-item /deep/ .ww-layout {
   pointer-events: unset!important;
 }
-.draggable-item /deep/ .ww-layout > .ww-object {
+.draggable-item /deep/ * > .ww-object {
+  pointer-events: unset!important;
+}
+.draggable-item /deep/ ** > .ww-object {
   pointer-events: unset!important;
 }
 </style>
