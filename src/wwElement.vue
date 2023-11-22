@@ -154,7 +154,6 @@ export default {
                 this.customDragHandler(value, { ...this.wwElementState.props });
             }
         },
-        /* wwEditor:start */
         isReadonly: {
             immediate: true,
             handler(value) {
@@ -165,7 +164,6 @@ export default {
                 }
             },
         },
-        /* wwEditor:end */
     },
 };
 </script>
