@@ -4,6 +4,14 @@ export default {
             en: "Stack",
         },
         icon: "inbox-in",
+        customSettingsPropertiesOrder: [
+            "group",
+            "items",
+            "sortable",
+            "readonly",
+            "customDragHandle",
+            ["handleInfo", "handleClass"],
+        ]
     },
     states: ['readonly'],
     triggerEvents: [
@@ -103,18 +111,36 @@ export default {
             },
             /* wwEditor:end */
         },
-        handle: {
+        customDragHandle: {
+            label: 'Custom drag',
+            type: 'OnOff',
+            section: 'settings',
+            defaultValue: false,
+            hidden: (content, sidePanelContent, boundProps, wwProps) => wwProps?.handle?.length,
+        },
+        handleTips: {
+            label: 'Tips',
+            type: 'Info',
+            options: {
+                text: { en: 'Put a class on elements that should trigger the drag&drop. (Settings > HTML attributes > Class)' },
+            },
+            editorOnly: true,
+            section: 'settings',
+            hidden: (content, sidePanelContent, boundProps, wwProps) => !content.customDragHandle || wwProps?.handle?.length,
+        },
+        handleClass: {
             label: "Handle class",
             type: "Text",
             bindable: true,
             section: "settings",
-            hidden: (content, sidePanelContent, boundProps, wwProps) => wwProps && wwProps.handle?.length,
+            defaultValue: "draggable",
             /* wwEditor:start */
             bindingValidation: {
                 type: "string",
                 tooltip: "A string that represent the class of the handle",
             },
             /* wwEditor:end */
+            hidden: (content, sidePanelContent, boundProps, wwProps) => !content.customDragHandle || wwProps?.handle?.length,
         },
     },
 };

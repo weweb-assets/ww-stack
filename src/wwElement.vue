@@ -129,7 +129,9 @@ export default {
             return this.wwElementState.props.itemKey || "id";
         },
         handle() {
-            return this.wwElementState.props.handle?.length ? this.wwElementState.props.handle : this.content.handle;
+            return this.wwElementState.props.handle?.length ? 
+                this.wwElementState.props.handle : this.content.customDragHandle ? 
+                this.content.handleClass : null;
         },
         isReadonly() {
             /* wwEditor:start */
