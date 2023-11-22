@@ -131,7 +131,7 @@ export default {
         handle() {
             return this.wwElementState.props.handle?.length ? 
                 this.wwElementState.props.handle : this.content.customDragHandle ? 
-                this.content.handleClass : null;
+                this.content.handleClass || 'draggable' : null;
         },
         isReadonly() {
             /* wwEditor:start */
