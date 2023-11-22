@@ -161,10 +161,6 @@ export default {
                 } else {
                     this.$emit("remove-state", "readonly");
                 }
-
-                this.$nextTick(() => {
-                    this.handleObserver();
-                });
             },
         },
         /* wwEditor:end */
