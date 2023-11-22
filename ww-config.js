@@ -5,6 +5,7 @@ export default {
         },
         icon: "inbox-in",
     },
+    states: ['readonly'],
     triggerEvents: [
         {
             name: "item:moved",
