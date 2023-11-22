@@ -10,7 +10,7 @@ export default {
             "sortable",
             "readonly",
             "customDragHandle",
-            ["handleInfo", "handleClass"],
+            ["handleTips", "handleClass"],
         ]
     },
     states: ['readonly'],
@@ -119,10 +119,10 @@ export default {
             hidden: (content, sidePanelContent, boundProps, wwProps) => wwProps?.handle?.length,
         },
         handleTips: {
-            label: 'Tips',
+            label: 'How to use',
             type: 'Info',
             options: {
-                text: { en: 'Put a class on elements that should trigger the drag&drop. (Settings > HTML attributes > Class)' },
+                text: { en: 'This class must be added on elements to trigger the drag&drop. (Settings > HTML attributes > Class)' },
             },
             editorOnly: true,
             section: 'settings',
