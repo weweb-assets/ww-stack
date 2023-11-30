@@ -139,7 +139,8 @@ export default {
                 return this.wwElementState.states.includes("readonly");
             }
             /* wwEditor:end */
-            return this.wwElementState.props.readonly || this.content.readonly || false;
+            // Ensure to return a boolean as vuedraggable interpret undefined as true
+            return !!(this.wwElementState.props.readonly || this.content.readonly);
         },
     },
     watch: {
