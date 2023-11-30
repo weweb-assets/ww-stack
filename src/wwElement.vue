@@ -139,7 +139,7 @@ export default {
                 return this.wwElementState.states.includes("readonly");
             }
             /* wwEditor:end */
-            return this.wwElementState.props.readonly || this.content.readonly;
+            return this.wwElementState.props.readonly || this.content.readonly || false;
         },
     },
     watch: {
