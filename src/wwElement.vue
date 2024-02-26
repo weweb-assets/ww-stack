@@ -146,6 +146,7 @@ export default {
     watch: {
         items: {
             immediate: true,
+            deep: true,
             handler: function (value) {
                 this.internalItems = [...value];
             },
