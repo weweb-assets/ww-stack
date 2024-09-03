@@ -129,9 +129,11 @@ export default {
             return this.wwElementState.props.itemKey || "id";
         },
         handle() {
-            return this.wwElementState.props.handle?.length ? 
-                this.wwElementState.props.handle : this.content.customDragHandle ? 
-                this.content.handleClass || 'draggable' : null;
+            return this.wwElementState.props.handle?.length
+                ? this.wwElementState.props.handle
+                : this.content.customDragHandle
+                ? this.content.handleClass || "draggable"
+                : null;
         },
         isReadonly() {
             /* wwEditor:start */
@@ -169,16 +171,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-/** FIX POINTER-EVENTS: ALL BREAKING DRAGGABLE ON MOBILE/TABLET (TOUCH MODE) */
-.draggable-item :deep(.ww-layout) {
-    pointer-events: unset !important;
-}
-.draggable-item :deep(* > .ww-object) {
-    pointer-events: unset !important;
-}
-.draggable-item :deep(** > .ww-object) {
-    pointer-events: unset !important;
-}
-</style>
