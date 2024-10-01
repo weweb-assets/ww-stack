@@ -6,9 +6,9 @@
     "serve": "weweb serve"
   },
   "devDependencies": {
-    "@weweb/cli": "weweb-team/weweb-cli#WW-1723-update-chromium-in-prerender"
+    "@weweb/cli": "latest"
   },
   "dependencies": {
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "4.1.0"
   }
 }

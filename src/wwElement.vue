@@ -171,3 +171,16 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+/** FIX POINTER-EVENTS: ALL BREAKING DRAGGABLE ON MOBILE/TABLET (TOUCH MODE) */
+.draggable-item :deep(.ww-layout) {
+    pointer-events: unset !important;
+}
+.draggable-item :deep(* > .ww-element) {
+    pointer-events: unset !important;
+}
+.draggable-item :deep(** > .ww-element) {
+    pointer-events: unset !important;
+}
+</style>
