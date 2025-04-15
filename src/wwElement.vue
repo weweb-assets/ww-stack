@@ -115,7 +115,7 @@ export default {
         },
         items() {
             const data = this.wwElementState.props.items ? this.wwElementState.props.items : this.content.items;
-            const items = wwLib.wwCollection.getCollectionData(data);
+            const items = wwLib.wwUtils.getDataFromCollection(data);
             if (!Array.isArray(items)) return [];
             return items;
         },
