@@ -180,7 +180,7 @@ export default {
 .draggable-item :deep(* > .ww-element) {
     pointer-events: unset !important;
 }
-.draggable-item :deep(** > .ww-element) {
+.draggable-item :deep(* .ww-element) {
     pointer-events: unset !important;
 }
 </style>
