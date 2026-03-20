@@ -24,6 +24,7 @@ export default {
                 newIndex: 1,
                 updatedList: [],
             },
+            description: "Run when an item is moved.",
         },
         {
             name: "item:added",
@@ -33,6 +34,7 @@ export default {
                 newIndex: 1,
                 updatedList: [],
             },
+            description: "Run when an item is added.",
         },
         {
             name: "item:removed",
@@ -42,6 +44,7 @@ export default {
                 oldIndex: 0,
                 updatedList: [],
             },
+            description: "Run when an item is removed.",
         },
     ],
     properties: {
