@@ -1,5 +1,6 @@
 {
     "metadata": {
+        "advanced": true,
         "name": "ww-stack",
         "description": "A sortable drag-and-drop stack/list element that renders repeated item cards with optional header and footer content.",
         "keywords": ["stack", "sortable", "draggable", "drag and drop", "list", "kanban", "cards"],
