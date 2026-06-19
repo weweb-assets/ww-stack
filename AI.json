@@ -1,5 +1,6 @@
 {
     "metadata": {
+        "advanced": true,
         "name": "ww-stack",
         "description": "A sortable drag-and-drop stack/list element that renders repeated item cards with optional header and footer content.",
         "keywords": ["stack", "sortable", "draggable", "drag and drop", "list", "kanban", "cards"],
@@ -46,7 +47,7 @@
         },
         {
             "name": "handleClass",
-            "description": "CSS class used as the drag handle when customDragHandle is true.",
+            "description": "CSS class used as the drag handle when customDragHandle is true. You must also place this exact class on a child element inside itemElement via that child's settings.htmlAttributes.class, otherwise no element can start a drag.",
             "type": "string",
             "defaultValue": "draggable"
         }
@@ -125,7 +126,7 @@
         "Inside itemElement, use context.item.data.<field> or context.item.data?.['field'] to display item properties.",
         "Inside headerElement when used in ww-kanban, context.item.data is the current stack object with label, value, and items fields.",
         "Use the same group value for multiple standalone stacks when items should be draggable between them.",
-        "When customDragHandle is true, add the handleClass value as an HTML class on a child element inside itemElement. Otherwise the whole item can start dragging.",
+        "When customDragHandle is true you MUST also add the same handleClass value as an HTML class on a child element inside itemElement, using that child's settings.htmlAttributes.class (typically a grip icon - see the custom drag handle example). Without that class on a child, the drag-handle selector matches nothing and the item cannot be dragged at all. When customDragHandle is false, the whole item starts dragging.",
         "Set readonly to true when the list is display-only.",
         "Use item:moved, item:added, and item:removed events to update the source array when drag-and-drop should persist."
     ],
